@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <title>HorseRUN</title>
+    <link rel="shortcut icon" href="{%  static 'horse_1.png' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../static/main.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top"><img src="../static/logo1.png" alt="HORSERUN"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 navbar-nav-scroll"
+                    style="--bs-scroll-height:100px;">
+                    <li class="nav-item"><a class="nav-link" href="#about">게임소개</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rules">게임룰</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'api:sessionTest' %}">게임시작</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://cafe.naver.com/horserun1"
+                            target="_blank">커뮤니티</a></li>
+
+
+                    {% if user.is_authenticated %}
+                    <li class="right"><a class="cash">{{user.cash}} 말똥 </a></li>
+
+                    <button class="btn btn-outline-success me-2" type="button"><a
+                            href="{% url 'accounts:logout' %}">{{user.username}} 로그아웃</a></button>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}"> 회원가입</a></li>
+                    <button class="btn btn-outline-success me-2" type="button"><a
+                            href="{% url 'accounts:login' %}">로그인</a></button>
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">론칭기념 말똥캐시 선착순 무료 증정</div>
+            <div class="masthead-heading text-uppercase">홀스런 6월23일 출시!</div>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'api:sessionTest' %}">> 베타테스트</a>
+        </div>
+        </div>
+    </header>
+    <!-- rank-->
+    <section class="page-section" id="rank">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">실시간 랭킹</h2>
+                <h3 class="section-subheading text-muted">이시각 누가 1등을 달리고 있을까?</h3>
+            </div>
+<!--    &lt;!&ndash; rank tab&ndash;&gt;-->
+<!--        <nav class="navbar navbar-default navbar-fixed-top data-toggle='tab'">-->
+<!--          <div>-->
+<!--            <ul class="nav navbar-nav nav-tabs">-->
+<!--                <button class="active"><a href="#first" >유저 랭킹</a></button>-->
+<!--                <button><a href="#second" >말 랭킹</a></button>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </nav>-->
+
+<!--    &lt;!&ndash; rank tab 1 content&ndash;&gt;-->
+<!--        <div class="tab-content" style="margin-top: 80px;">-->
+<!--            <div class="tab-pane fade active in" id="first">-->
+           <div class="container">
+               <div class="row">
+                 <div class="col-md-6">
+                   <h4 class="my-3">유저 랭킹 TOP3</h4>
+                   <p class="text-muted"> 나와 친구들의 랭킹을 확인하세요</p>
+                    <table class="table table-hover table-striped text-center">
+                        {% include 'user_list.html' %}
+                    </table>
+                </div>
+<!--    &lt;!&ndash; rank tab 2 content&ndash;&gt;-->
+<!--            <div class="tab-pane fade" id="second">-->
+                 <div class="col-md-6">
+                    <h4 class="my-3">말 랭킹 TOP3</h4>
+                    <p class="text-muted"> 상위권 말의 승률까지 한번에 체크!</p>
+                    <table class="table table-hover table-striped text-center">
+                        {% include 'rank_list.html' %}
+                        {% block content %}
+                        {% endblock %}
+                    </table>
+                </div>
+             </div>
+        </div>
+
+    </section>
+<!--	</div>-->
+<!--</div>-->
+
+        <!-- About-->
+    <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <br><br><br>
+                    <h2 class="section-heading text-uppercase">게임소개</h2>
+                    <h3 class="section-subheading text-muted">배팅기능과 이벤트를 부합시킨 새로운 형태의 온라인 경마게임으로, 남녀노소 쉽게 즐길 수 있습니다.
+                    </h3>
+                </div>
+
+           <div class="row">
+           <div class="col-md-6">
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3> <span style="color:#ffc800;" >2022.05.26 </span> </h3>
+                            <h3 class="subheading"><span style="color:#ffc800;" >Our Humble Beginnings</span></h3>
+                        </div>
+                        <div class="junmo">
+                            <img src="../static/junmonim.png" alt="준모님" style="padding:1rem;">
+                     </div>
+                        <div class="timeline-body">
+                            <p class="text-muted"> <span style="color:#ffffff;" >박준모 CEO 님은 22년 5월 26 파이썬 미니프로젝트에서
+                                파이썬 파이게임 라이브러리로 <br>경마게임을 구현하려고 시도하였다.</span> </p>
+                        </div>
+                    </div>
+                </li>
+            </div>
+           <div class="col-md-6" style="border-left-width: thin;border-left-style: solid;border-left-color: #fff; padding:5rem">
+                <li class="timeline-inverted">
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3><span style="color:#ffc800;">2022.06.17 - 2022.06.22</span></h3>
+                            <h3 class="subheading"><span style="color:#ffc800;">The company is Born </span>></h3>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted"><span style="color:#ffffff;">
+                                초기 경마게임을 토대로 4조 '말달리자'팀이 결성되었다.
+                                5일동안 '말달리자'팀은 <br>시뮬레이션 경마게임 "HorseRUN" 웹페이지를 06.23 베타테스트 버전 출시했다.
+                            </span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li><
+               <div class="col-md-6">
+                   <li class="timeline-inverted">
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3><span style="color:#ffc800;">2022.06.24</span> </h3>
+                            <h3 class="subheading"><span style="color:#ffc800;">Transition to Full Service</span></h3>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted"><span style="color:#ffffff;">HorseRun ver1.0 정식출시 및 ver2.0 업데이트 예정 !</span></p>
+                        </div>
+                    </div>
+                </li>
+
+              </div>
+                 </div>
+            </div>
+    </section>
+
+
+            <section class="page-section" id="rules">
+                <div class="container">
+                    <div class="text-center">
+                    <br><br><br>
+                        <h2 class="section-heading text-uppercase">게임룰</h2>
+                         <h3 class="section-subheading text-muted">게임 참여 전에 게임 룰을 확인 하세요 </h3>
+                         <div class="game-rule">
+                                <img src="../static/gamerule.png" alt="게임룰">
+                         </div>
+
+                    </div>
+                    <div class="rules-body">
+
+            </div>
+            </section>
+
+            <!-- horse-->
+            <section class="page-section bg-light" id="horse">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-heading text-uppercase" id="horse-info">말 정보</h2>
+                        <h3 class="section-subheading text-muted">말! 말! 말!</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="horse-member">
+                                <img class="mx-auto rounded-circle" src="../static/horse_12.png" alt="..." />
+                                <h4>빨간말</h4>
+                                <p class="text-muted">적토마</p>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="horse-member">
+                                <img class="mx-auto rounded-circle" src="../static/horse_4.png" alt="..." />
+                                <h4>노랑말</h4>
+                                <p class="text-muted">레전드</p>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="horse-member">
+                                <img class="mx-auto rounded-circle" src="../static/horse_6.png" alt="..." />
+                                <h4>초록말</h4>
+                                <p class="text-muted">젊은피</p>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="horse-member">
+                                <img class="mx-auto rounded-circle" src="../static/horse_9.png" alt="..." />
+                                <h4>파랑말</h4>
+                                <p class="text-muted">유니콘</p>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="horse-member">
+                                <img class="mx-auto rounded-circle" src="../static/horse_10.png" alt="..." />
+                                <h4>보라말</h4>
+                                <p class="text-muted">해외파</p>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="horse-member">
+                                <img class="mx-auto rounded-circle" src="../static/horse_1.png" alt="..." />
+                                <h4>검은말</h4>
+                                <p class="text-muted">다크호스</p>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="#!"
+                                    aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <br>
+                            <p class="large text-muted"> (주)말달리자  / 주소:경기도 고양시 덕양구 화정동 화정터미널 2층 / 대표: 박준모</p>
+                        </div>
+                    </div>
+
+
+            </section>
+
+    </body>
+
+</html>

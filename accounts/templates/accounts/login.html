@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <title>login</title>
+    <link rel="shortcut icon" href="{%  static 'horse_1.png' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<div class="container">
+
+<body id="page-top" style="background-color: #212529; color:#fff;">
+<br><br><br>
+<div id="row mt-5" style="font-family: 'Jua', 'Montserrat';">
+    <div class="col-12 text-center">
+    <div>
+    <h1 style="font-size:3.5rem">로그인</h1>
+    </div>
+    <div>
+        <span>또는</span><a href="{% url 'accounts:signup' %}"> 회원가입 </a><span>을 하세요</span>
+    </div>
+        <br>
+    <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>사용자ID</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div class="form-group" class="login_pw">
+            <label>비밀번호</label>
+            <input type="text" name="password" id="password">
+        </div>
+        <div class="submit">
+        <button type="submit"> > 로그인</button>
+        </div>
+    </form>
+    </div>
+</body>
+</html>

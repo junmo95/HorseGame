@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <title>signup</title>
+    <link rel="shortcut icon" href="{%  static 'horse_1.png' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<div class="container">
+
+    <body id="page-top" style="background-color: #212529; color:#fff;">
+    <br><br><br>
+    <div id="row mt-5" style="font-family: 'Jua', 'Montserrat';">
+    <div class="col-12 text-center">
+        <div>
+            <h1 style="font-size:3.5rem">회원가입</h1>
+        </div>
+        <div>
+            <span>또는</span><a href="{% url 'accounts:login' %}"> 로그인 </a><span>하세요.</span>
+        </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <br>
+
+        <div class="form-group">
+            <label>사용자ID</label>
+            <input type="text" name="username" id="username" value="{{form.username.value|default_if_none:''}}" placeholder="(id입력)">
+        </div>
+        <div class="form-group">
+            <label>비밀번호</label>
+            <input type="password" name="password1" id="password1" value="{{form.password1.value|default_if_none:''}}" placeholder="(숫자,영문포함 8자이상)">
+        </div>
+        <div class="form-group">
+            <label>비번확인</label>
+            <input type="password" name="password2" id="password2" value="{{form.password2.value|default_if_none:''}}">
+        </div>
+        <div>
+            <label>메일주소</label>
+            <input type="text" name="email" id="email" value="{{form.email.value|default_if_none:''}}" placeholder="(예시: 아이디@gmail.com)">
+        </div>
+        <br>
+        <button type="submit"> > 회원가입</button>
+    </form>
+</body>
+</html>

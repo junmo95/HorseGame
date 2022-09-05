@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <title>pick_horse</title>
+    <link rel="shortcut icon" href="{%  static 'horse_1.png' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<div class="container">
+
+    <body id="page-top" style="background-color: #212529; color:#fff;">
+        <br><br><br>
+        <div id="row mt-5" style="font-family: 'Jua', 'Montserrat';">
+            <div class="col-12 text-center">
+                <div>
+                    <h1 style="font-size:3.5rem">말 선택</h1>
+                    <a>본인이 플레이 할 말을 아래에서 선택해주세요</a><br>
+                    <img class="mx-auto rounded-circle" src="/static/3dhorse.gif">
+                    <br><br>
+
+                    <ul class="horse-list" class="mx-auto rounded-circle" style="test-align: center">
+                        {% for raceHorse in context %}
+                        <button style="padding:1.5rem">{{raceHorse.horse_name}}</button>
+                        {% endfor %}
+                    </ul>
+                    <!-- 상위 엘리먼트인 ul 하나에만 클릭 이벤트 리스너를 달아서 제어 -->
+                    <script>
+                        var ul = document.querySelector('ul');
+
+                        ul.addEventListener("click", function(e) {
+                            // console.log(e.target.innerHTML);
+                            // console.log(typeof(e.target));
+                            // console.log(typeof(e.target.innerHTML));
+                            window.location.href = '/horserun/game_session?context=' + e.target.innerHTML;
+                        });
+                    </script>
+    </body>
+</html>

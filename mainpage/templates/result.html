@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <title>result</title>
+    <link rel="shortcut icon" href="{%  static 'horse_1.png' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<script>
+    let context = "{{context|safe}}";
+
+    let mysessionEndData = "{{mysessionEndData}}";
+    context = context.replace(/'/gi, '"');
+
+    let horse_data = JSON.parse(context); //6마리말정보
+    console.log(horse_data);
+    let myhorse_name = "{{mycontext|safe}}"; //내가 고른말 이름
+    let ranking = JSON.parse(mysessionEndData); // 랭킹
+    console.log(ranking);
+</script>
+
+
+<div class="container">
+
+<body id="page-top" style="background-color: #212529; color:#fff;">
+<br><br><br>
+<div id="row mt-5" style="font-family: 'Jua', 'Montserrat';">
+    <div class="col-12 text-center">
+    <div>
+    <h1 style="font-size:3.5rem">게임 결과</h1>
+    </div>
+        <br>
+    <div>
+
+        <h1>{{user}}님이 선택한 {{mycontext}}은(는) <span id="selectedhorserank"></span>위 입니다.</h1>
+        <br>
+        <h4>이번 게임으로 변동된 (+획득/-소진) 말똥캐시는 {{cash}} 원 이며, 잔여 캐시는{{user.cash}}입니다.</h4>
+    </div>
+        <br>
+        <a style="font-size: xx-large;" href="{% url 'api:sessionTest' %}"> > 다시 한판!! </a>
+        <a style="font-size: xx-large;" href="{% url 'main:main' %}"> > 홈으로~ </a>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    let horserank = document.getElementById('selectedhorserank');
+    let myhorse_num = 0; // 내가 고른 말의 트랙번호
+    for(let i=0; i<6; i++){
+        if(horse_data[i].horse_name == myhorse_name){
+            myhorse_num = i + 1;
+        }
+    }
+    myhorse_ranking = ranking.indexOf(myhorse_num) + 1
+    // horserank.innerHTML = myhorse_num;
+    horserank.innerHTML = myhorse_ranking;
+    // horserank.innerText =
+</script>
+</html>

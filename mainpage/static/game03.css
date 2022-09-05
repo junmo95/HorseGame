@@ -1,0 +1,160 @@
+body{
+    font-family: Jua;
+    background-color: #212529
+	/* background-image: url("back.jpg"); */
+}
+
+header{
+	/* display:flexbox; */
+	/* border: 2px solid black; */
+
+}
+
+/* @@@레이스상황 전광판@@@ */
+.raceInfo {
+	width: 36vw;
+	height: 30vh;
+	margin: 20px;
+	border-radius: 1em/1em;
+    border: 5px solid #ffc800;
+    padding: 1em;
+	float: left;
+	background-color: black;
+	color: white;
+	overflow: hidden;  /* 이거해야지 글자가 안 넘어감 */
+}
+/* 등수별 css */
+.first{
+	/* vh로 높이 설정해야지 창 크기에 맞춰 변동됨 */
+	font-size: 8vh;
+	margin: 10px;
+	color: #ffc800
+}
+.second{
+	font-size: 5vh;
+	margin: 20px;
+}
+.third{
+	font-size: 3vh;
+	margin: 25px;
+}
+
+/* @@@이벤트 전광판@@@ */
+.eventInfo {
+	width: 36%;
+	height: 30vh;
+	margin: 20px;
+	border-radius: 1em/1em;
+    border: 5px solid #ffc800;
+    padding: 1em;
+	float: right;
+	background-color: black;
+	color: white;
+	overflow: hidden; 
+}
+.eventIdx{
+	font-size: 5vh;
+	text-align: center;
+	color: #ffc800
+}
+.event{
+	font-size: 4vh;
+}
+
+.time{
+	position: absolute;
+	top: 10%;
+	left: 44%;
+
+	font-size: 40px;
+
+	width: 10vw;
+
+	text-align: center;
+
+    color: red;
+    background-color: transparent;
+    border: 3px solid red;
+
+
+
+	/* text-align: center;
+	vertical-align:middle;
+	margin: 20px;
+	width: 165px;
+	height: 50px;
+	border: 1px solid black;
+
+	font-size: 30px; */
+}
+
+/* @@@트랙 설정@@@ */
+/* 경기장 전체 설정*/
+.track {
+	width:100%;
+	height:60vh;
+	padding: 20px;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	/* background: rgb(113, 206, 113); */
+	background-image: url("grass.jpg");
+	background-size: 10%;
+	display:flex;
+	align-items:center;
+}
+/* 시스템 결승점 */
+.finishLineSystem {
+	position:absolute;
+	width:4px;
+	height:40%;
+	left:88%;
+	background: red;
+}
+/* 시각 결승점 */
+.finishLineCss{
+	position:absolute;
+	width:4px;
+	height:50vh;
+	left:95%;
+	background: black;
+}
+
+/* 트랙 선 */
+.trackLine {
+	position:absolute;
+	width:93vw;
+	height:4px;
+	left:2%;
+	background: white;
+}
+
+
+/* @@@말 설정@@@ */
+/* 말 전체 */
+.horses{
+	height: 40vh;
+	vertical-align:middle;
+}
+
+
+/*말별 색깔*/
+.H1{
+	filter: opacity(.5) drop-shadow(0 0 0.1px red);
+}
+.H2{
+	filter: opacity(.5) drop-shadow(0 0 0.1px yellow);
+}
+.H3{
+	filter: opacity(.5) drop-shadow(0 0 0.1px green);
+}
+.H4{
+	filter: opacity(.5) drop-shadow(0 0 0.1px blue);
+}
+.H5{
+	filter: opacity(.5) drop-shadow(0 0 0.1px purple);
+}
+.H6{
+	filter: opacity(.5) drop-shadow(0 0 0.1px black);
+}
+

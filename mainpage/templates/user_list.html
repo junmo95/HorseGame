@@ -1,0 +1,21 @@
+{% block content %}
+{% load static %}
+<thead>
+    <tr>
+        <th>순위</th>
+        <th>이름</th>
+        <th>말똥캐시</th>
+    </tr>
+</thead>
+<tbody style="color: white;">
+    {% for user in user_list%}
+    {% if forloop.counter <= 3 %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.cash}}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</tbody>
+{% endblock %}

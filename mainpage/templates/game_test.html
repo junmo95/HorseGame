@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <title>game_start</title>
+    <link rel="shortcut icon" href="{%  static 'horse_1.png' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'game03.css' %}">
+
+
+
+    <!-- 외부라이브러리 -->
+    <script src="{% static 'gsap.min.js' %}" defer></script>
+
+    <!-- JavaScript -->
+    <script src="{% static 'game03.js' %}" defer></script>
+
+
+
+
+</head>
+
+<body>
+    <!-- 레이스 정보 전관판 -->
+    <div class="raceInfo">
+        <div class="rankInfo first">경기 대기</div>
+        <div class="rankInfo second"></div>
+        <div class="rankInfo third"></div>
+    </div>
+
+    <!-- 시간 -->
+    <!-- <div class="time">ddd</div> -->
+    <div class="time">0초</div>
+
+    <script>
+        let context = "{{context|safe}}";
+        let myhorse_name = "{{mycontext|safe}}";
+        let eventdata = "{{eventdata|safe}}";
+        console.log(myhorse_name);
+        context = context.replace(/'/gi, '"');
+        let horse_data = JSON.parse(context);
+
+        eventdata = eventdata.replace('<QuerySet ', '');
+        eventdata = eventdata.replace('>', '');
+        eventdata = eventdata.replace(/'/gi, '"');
+        let event_data = JSON.parse(eventdata);
+        console.log(event_data);
+    </script>
+
+    <!-- 이벤트 정보 전광판 -->
+    <div class="eventInfo">
+        <div class="eventIdx">이벤트 발생</div>
+        <div class="event event01"></div>
+        <div class="event event02"></div>
+        <div class="event event03"></div>
+        <div class="event event04"></div>
+    </div>
+
+    <!-- 경주 트랙 -->
+    <div class="track">
+        <!-- 시스템 결승점 -->
+        <div class="finishLineSystem"></div>
+        <!-- 시각 결승점 -->
+        <div class="finishLineCss"></div>
+        <!-- 말 --->
+        <div class="horses">
+            <div class="trackLine"></div>
+            <!-- <div class="horse H1"><img class = aaa src="./img/RunHorse.gif" alt=""></div> -->
+            <div class="horse H1"><img class=aaa src="{% static 'RunHorse.gif' %}" alt=""></div>
+            <div class="trackLine"></div>
+            <div class="horse H2"><img src="{% static 'RunHorse.gif' %}" alt=""></div>
+            <div class="trackLine"></div>
+            <div class="horse H3"><img src="{% static 'RunHorse.gif' %}" alt=""></div>
+            <div class="trackLine"></div>
+            <div class="horse H4"><img src="{% static 'RunHorse.gif' %}" alt=""></div>
+            <div class="trackLine"></div>
+            <div class="horse H5"><img src="{% static 'RunHorse.gif' %}" alt=""></div>
+            <div class="trackLine"></div>
+            <div class="horse H6"><img src="{% static 'RunHorse.gif' %}" alt=""></div>
+            <div class="trackLine"></div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

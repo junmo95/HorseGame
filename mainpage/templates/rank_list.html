@@ -1,0 +1,40 @@
+{% block content %}
+{% load static %}
+<thead>
+    <tr>
+        <th>순위</th>
+        <th>말이름</th>
+        <th>승리횟수</th>
+        <th>출전횟수</th>
+        <th>승률</th>
+    </tr>
+</thead>
+<tbody style="color: white;">
+    <tr>
+        <td>1</td>
+        <td id="name0"></td>
+        <td id="win0"></td>
+        <td id="race0"></td>
+        <td id="rate0"></td>
+    </tr>
+
+    <tr>
+        <td>2</td>
+        <td id="name1"></td>
+        <td id="win1"></td>
+        <td id="race1"></td>
+        <td id="rate1"></td>
+    </tr>
+
+    <tr>
+        <td>3</td>
+        <td id="name2"></td>
+        <td id="win2"></td>
+        <td id="race2"></td>
+        <td id="rate2"></td>
+    </tr>
+</tbody>
+
+    <!-- 홍준js -->
+    <script src="{% static 'apiTest.js'%}"></script>
+{% endblock %}
